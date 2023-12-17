@@ -24,13 +24,13 @@ return new class extends Migration
             $table->text('description');
             $table->string('price');
             $table->string('price_status');
-            $table->string('price_condition');
+            $table->string('product_condition');
             $table->string('listing_location')->nullable();
             $table->string('country_id');
             $table->string('state_id')->nullable();
             $table->string('city_id')->nullable();
             $table->string('phone_number');
-            $table->string('published')->defauld(1);
+            $table->string('published')->default(1);
             $table->string('link');
             $table->timestamps();
         });

@@ -27,6 +27,7 @@ use App\Http\Controllers\AdvertisementController;
 /**************** Frontend ************************/
 Route::get('/', [MenuController::class, 'menu']);
 Route::get('/ads/create', [AdvertisementController::class, 'create']);
+Route::post('/ads/store', [AdvertisementController::class, 'store'])->name('ads.store');
 
 // Route::get('/', function () {
 //     return view('index');
