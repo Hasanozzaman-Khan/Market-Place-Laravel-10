@@ -1,7 +1,10 @@
 @extends('Layouts.app')
 
 @section('content')
-<example-component/>
+
+<div class="row">
+    <!-- <example-component/> -->
+</div>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -41,19 +44,23 @@
                         <form class="" action="{{route('ads.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row form-inline form-group mt-2">
-                                <label for="feature_image" class="mt-1"><b>Upload 3 images</b></label>
-                                <div class="col-md-4">
-                                    <input type="file" name="feature_image" value="" class="form-control" id="feature_image" accept="image/*">
+                                <label for="feature_image" class="mb-1"><b>Upload 3 images</b></label>
+                                <div class="col-md-4" id="feature_image_design">
+                                    <!-- <input type="file" name="feature_image" value="" class="form-control" id="feature_image" accept="image/*"> -->
+                                    <feature-image-preview />
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="file" name="first_image" value="" class="form-control" id="first_image" accept="image/*">
+                                <div class="col-md-4" id="first_image_design">
+                                    <!-- <input type="file" name="first_image" value="" class="form-control" id="first_image" accept="image/*"> -->
+                                    <first-image-preview />
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="file" name="second_image" value="" class="form-control" id="second_image" accept="image/*">
+                                <div class="col-md-4" id="second_image_design">
+                                    <!-- <input type="file" name="second_image" value="" class="form-control" id="second_image" accept="image/*"> -->
+                                    <second-image-preview />
                                 </div>
                             </div>
-                            <div class="row form-inline form-group mt-2">
-                                <div class="col-md-4">
+                            <div class="row form-inline form-group mt-2" id="category_dependent_dropdown">
+                                <category-dependent-dropdown />
+                                <!-- <div class="col-md-4">
                                     <label for="category_id" class=""><b>Category</b></label>
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="">Choose Category</option>
@@ -61,8 +68,8 @@
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="col-md-4">
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <label for="subcategory_id" class=""><b>Subcategory</b></label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id">
                                         <option value="">Choose Subcategory</option>
@@ -70,8 +77,8 @@
                                             <option value="{{$subcategory->id}}">{{$subcategory->name}}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="col-md-4">
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <label for="childcategory_id" class=""><b>Childcategory</b></label>
                                     <select class="form-control" name="childcategory_id" id="childcategory_id">
                                         <option value="">Choose Childcategory</option>
@@ -79,7 +86,7 @@
                                             <option value="{{$childcategory->id}}">{{$childcategory->name}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-group mt-2">
                                 <label for="name"><b>Name</b></label>
@@ -114,35 +121,11 @@
                                 <label for="listing_location"><b>Listing Location</b></label>
                                 <input type="text" name="listing_location" value="" class="form-control" id="listing_location">
                             </div>
-                            <div class="row form-inline form-group mt-2">
-                                <div class="col-md-4">
-                                    <label for="country_id" class=""><b>Country</b></label>
-                                    <select class="form-control" name="country_id" id="country_id">
-                                        <option value="">Choose Country</option>
-                                        @foreach(App\Models\Country::orderBy('name')->get() as $country)
-                                            <option value="{{$country->id}}">{{$country->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="state_id" class=""><b>State</b></label>
-                                    <select class="form-control" name="state_id" id="state_id">
-                                        <option value="">Choose State</option>
-                                        @foreach(App\Models\State::orderBy('name')->get() as $state)
-                                            <option value="{{$state->id}}">{{$state->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="city_id" class=""><b>City</b></label>
-                                    <select class="form-control" name="city_id" id="city_id">
-                                        <option value="">Choose City</option>
-                                        @foreach($cities as $city)
-                                            <option value="{{$city->id}}">{{$city->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
+                            <div class="row form-inline form-group mt-2" id="address_dependent_dropdown">
+                                <address-dependent-dropdown />
                             </div>
+
                             <div class="form-group mt-2">
                                 <label for="phone_number"><b>Phone Number</b></label>
                                 <input type="text" name="phone_number" value="" class="form-control" id="phone_number">
@@ -161,7 +144,7 @@
         </div>
     </div>
 
-    <style media="screen">
+    <!-- <style media="screen">
         .vartical-menu a{
             background-color: #fff;
             color: #000;
@@ -173,5 +156,5 @@
             background-color: red;
             color: #fff;
         }
-    </style>
+    </style> -->
 @endsection

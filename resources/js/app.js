@@ -1,12 +1,68 @@
-// import './bootstrap';
+import './bootstrap';
 
-require('./bootstrap');
+import {createApp} from 'vue';
 
-window.Vue = require('vue');
-window.axios = require('axios');
+import Example from './components/ExampleComponent.vue';
+// Images
+import FeatureImagePreview from './components/imagepreview/FeatureImage.vue';
+import FirstImagePreview from './components/imagepreview/FirstImage.vue';
+import SecondImagePreview from './components/imagepreview/SecondImage.vue';
+// Category DrpoDown
+import Category from './components/category/CategoryDropDown.vue';
+// Address DrpoDown
+import Address from './components/address/AddressDropDown.vue';
 
-Vue.component('example-component', require('./component/ExampleComponent.vue').default);
 
-const app = new Vue({
-    el : '#app',
-});
+const app = createApp();
+app.component('example-component', Example);
+app.mount("#app");
+
+// Feature Image
+const featureImagePreview = createApp();
+featureImagePreview.component('feature-image-preview', FeatureImagePreview);
+featureImagePreview.mount("#feature_image_design");
+
+// Feature Image
+const firstImagePreview = createApp();
+firstImagePreview.component('first-image-preview', FirstImagePreview);
+firstImagePreview.mount("#first_image_design");
+
+// Feature Image
+const secondImagePreview = createApp();
+secondImagePreview.component('second-image-preview', SecondImagePreview);
+secondImagePreview.mount("#second_image_design");
+
+// Address DrpoDown
+const addressDropDown = createApp();
+addressDropDown.component('address-dependent-dropdown', Address);
+addressDropDown.mount("#address_dependent_dropdown");
+
+// Category DrpoDown
+const categoryDropDown = createApp();
+categoryDropDown.component('category-dependent-dropdown', Category);
+categoryDropDown.mount("#category_dependent_dropdown");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// require('./bootstrap');
+//
+// window.Vue = require('vue');
+// window.axios = require('axios');
+//
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//
+// const app = new Vue({
+//     el : '#app',
+// });

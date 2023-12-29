@@ -23,8 +23,8 @@ class AdsFormRequest extends FormRequest
     {
         return [
             'feature_image' => 'required|mimes:jpg,jpeg,png',
-            'first_image' => 'required|mimes:jpg,jpeg,png',
-            'second_image' => 'required|mimes:jpg,jpeg,png',
+            'first_image' => 'required',
+            'second_image' => 'required',
             'name' => 'required|min:3|max:60',
             'description' => 'required|min:3',
             'price' => "required",

@@ -12,14 +12,16 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('css/app.css')}}"> -->
     <!-- Scripts -->
-    <script src="{{asset('js/app.js')}}"></script>
+    <!-- <script src="{{asset('js/app.js')}}"></script> -->
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
+    <!-- </div>
+    <div id="app2"> -->
         <!-- First navbar Start -->
         <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm text-white">
             <div class="container">
@@ -136,6 +138,19 @@
             .navbar-hover .collapse ul li:hover> ul {display:block;}
             .navbar-hover .collapse ul ul {position:absolute;top:100%;left:0;min-width:250px;display:none;}
             .navbar-hover .collapse ul ul ul {position:absolute;top:0;left:100%;min-width:250px;display:none;}
+        }
+
+
+        .vartical-menu a{
+            background-color: #fff;
+            color: #000;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+        }
+        .vartical-menu a:hover{
+            background-color: red;
+            color: #fff;
         }
     </style>
 
