@@ -22,7 +22,9 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        //
+        $ads = Advertisement::where('user_id', auth()->user()->id)->get();
+        // dd($ads);
+        return view('Ads.index', compact('ads'));
     }
 
     /**

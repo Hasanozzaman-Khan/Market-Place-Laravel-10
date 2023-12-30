@@ -7,10 +7,10 @@ import Example from './components/ExampleComponent.vue';
 import FeatureImagePreview from './components/imagepreview/FeatureImage.vue';
 import FirstImagePreview from './components/imagepreview/FirstImage.vue';
 import SecondImagePreview from './components/imagepreview/SecondImage.vue';
-// Category DrpoDown
-import Category from './components/category/CategoryDropDown.vue';
 // Address DrpoDown
 import Address from './components/address/AddressDropDown.vue';
+// Category DrpoDown
+import Category from './components/category/CategoryDropDown.vue';
 
 
 const app = createApp();
