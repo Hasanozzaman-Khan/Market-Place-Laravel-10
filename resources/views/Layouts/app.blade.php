@@ -148,6 +148,10 @@
             padding: 12px;
             text-decoration: none;
         }
+        .vartical-menu a.active{
+            background-color: blue;
+            color: #fff;
+        }
         .vartical-menu a:hover{
             background-color: red;
             color: #fff;

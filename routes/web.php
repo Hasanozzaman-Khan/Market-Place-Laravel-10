@@ -12,6 +12,7 @@ use App\Http\Controllers\ChildcategoryController;
 /**************** Frontend ************************/
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AdvertisementController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,9 +28,13 @@ use App\Http\Controllers\AdvertisementController;
 /**************** Frontend ************************/
 Route::get('/', [MenuController::class, 'menu']);
 
-Route::get('/ads/create', [AdvertisementController::class, 'create'])->middleware('auth');
+Route::get('/ads', [AdvertisementController::class, 'index'])->middleware('auth')->name('ads.index');
+Route::get('/ads/create', [AdvertisementController::class, 'create'])->middleware('auth')->name('ads.create');
 Route::post('/ads/store', [AdvertisementController::class, 'store'])->middleware('auth')->name('ads.store');
-Route::get('/ads', [AdvertisementController::class, 'index'])->middleware('auth');
+Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->middleware('auth')->name('ads.edit');
+Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->middleware('auth')->name('ads.update');
+
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
 
 // Route::get('/', function () {
 //     return view('index');

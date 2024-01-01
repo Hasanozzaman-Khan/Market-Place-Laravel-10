@@ -8,10 +8,10 @@
             @include('sidebar')
         </div>
         <div class="col-md-9">
+            @include('Backend.Inc.message')
             @if($errors->any())
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <!-- <button type="button" class="close" data-dismis="alert" aria-label="close" name="button"> -->
                 @foreach($errors->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach
@@ -38,7 +38,33 @@
                             @forelse($ads as $key => $ad)
                                 <tr>
                                     <th scope="row">{{$key + 1}}</th>
-                                    <td><img src="{{Storage::url($ad->feature_image)}}" width="100" height="60" alt="..."></td>
+                                    <td style="width:150px; height:100px;">
+                                        <div id="carouselExampleControls{{$ad->id}}" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                                                    <img src="{{Storage::url($ad->feature_image)}}" width="150" height="100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="{{Storage::url($ad->first_image)}}" width="150" height="100" alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="{{Storage::url($ad->second_image)}}" width="150" height="100" alt="...">
+                                                </div>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls{{$ad->id}}" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls{{$ad->id}}" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+
+
+
+                                    </td>
                                     <td>{{$ad->name}}</td>
                                     <td class="text-primary">USD{{$ad->price}}</td>
                                     <td>
@@ -48,7 +74,7 @@
                                             <span class="badge bg-danger">Pending</span>
                                         @endif
                                     </td>
-                                    <td><button class="btn btn-outline-warning">Edit</button></td>
+                                    <td><a href="{{route('ads.edit',[$ad->id])}}"><button class="btn btn-outline-warning">Edit</button></a></td>
                                     <td><button class="btn btn-outline-info">View</button></td>
                                 </tr>
                             @empty

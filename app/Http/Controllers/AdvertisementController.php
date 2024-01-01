@@ -11,6 +11,7 @@ use App\Models\City;
 
 /********** Requests ***************/
 use App\Http\Requests\AdsFormRequest;
+use App\Http\Requests\AdsUpdateRequest;
 
 
 use Illuminate\Support\Str;
@@ -57,7 +58,7 @@ class AdvertisementController extends Controller
         $data['user_id'] = auth()->user()->id;
 
         Advertisement::create($data);
-        return "Created";
+        return redirect()->route('ads.index')->with('message', 'Your Ad Created Successfully.');
     }
 
     /**
@@ -71,17 +72,45 @@ class AdvertisementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $ad = Advertisement::find($id);
+
+        $this->authorize('edit-ad', $ad);
+
+        return view('ads.edit', compact('ad'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdsUpdateRequest $request, $id)
     {
-        //
+        $ads = Advertisement::find($id);
+
+        $data = $request->all();
+
+        $featureImage = $ads->feature_image;
+        if($request->hasFile('feature_image')){
+            $featureImage = $request->file('feature_image')->store('public/ads');
+        }
+        $firstImage = $ads->first_image;
+        if($request->hasFile('first_image')){
+            $firstImage = $request->file('first_image')->store('public/ads');
+        }
+        $secondImage = $ads->second_image;
+        if($request->hasFile('second_image')){
+            $secondImage = $request->file('second_image')->store('public/ads');
+        }
+
+        $data['feature_image'] = $featureImage;
+        $data['first_image'] = $firstImage;
+        $data['second_image'] = $secondImage;
+        $data['slug'] = Str::slug($request->name);
+        $data['user_id'] = auth()->user()->id;
+
+        $ads->update($data);
+        return redirect()->route('ads.index')->with('message', 'Your Ad Updated Successfully.');
     }
 
     /**
