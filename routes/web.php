@@ -33,8 +33,10 @@ Route::get('/ads/create', [AdvertisementController::class, 'create'])->middlewar
 Route::post('/ads/store', [AdvertisementController::class, 'store'])->middleware('auth')->name('ads.store');
 Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->middleware('auth')->name('ads.edit');
 Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->middleware('auth')->name('ads.update');
+Route::delete('/ads/{id}/delete', [AdvertisementController::class, 'destroy'])->middleware('auth')->name('ads.destroy');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
+Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
 
 // Route::get('/', function () {
 //     return view('index');

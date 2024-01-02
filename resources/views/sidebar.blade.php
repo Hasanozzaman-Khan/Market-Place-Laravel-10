@@ -1,7 +1,11 @@
 <div class="card">
     <div class="card-body">
-        <img src="/img/pp.jpg" alt="" class="mx-auto d-block img-thumbnail" width="130">
-        <p class="text-center"><b>Mal Tos</b></p>
+        @if(!auth()->user()->avatar)
+            <img src="/img/pp.jpg" alt="" class="mx-auto d-block img-thumbnail" width="130">
+        @else
+            <img src="{{Storage::url(auth()->user()->avatar)}}" alt="" class="mx-auto d-block img-thumbnail" width="130">
+        @endif
+        <p class="text-center"><b>{{auth()->user()->name}}</b></p>
         <hr style="border:2px solid blue">
         <div class="vartical-menu">
             <a href="#">Dashboard</a>

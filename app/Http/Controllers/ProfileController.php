@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 class ProfileController extends Controller
 {
     /**
@@ -49,9 +51,32 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'mimes:jpg,png,jpeg'
+        ]);
+        $user = User::find(auth()->user()->id);
+
+        $image = $user->avatar;
+        if($request->hasFile('image')){
+            $image = $request->file('image')->store('public/avatar');
+        }
+
+// dd($request->all());
+        $user->update([
+            'name'=>$name=$request->name,
+            'address'=>$request->address,
+            'avatar'=>$image
+        ]);
+        // $user->update([
+        //     'name' => $request->name,
+        //     'address' => $request->address,
+        //     'avatar' => $image;
+        // ]);
+
+        return redirect()->back()->with('message', 'Profile Updated Successfully.');
     }
 
     /**

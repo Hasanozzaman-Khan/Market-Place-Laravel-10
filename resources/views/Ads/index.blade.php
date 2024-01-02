@@ -18,7 +18,7 @@
             </div>
             @endif
             <div class="card">
-                <div class="card-header text-white" style="background-color:red;">
+                <div class="card-header text-white bg-danger">
                     <h3 class="text-center">Post your ad</h3>
                 </div>
                 <div class="card-body">
@@ -76,6 +76,32 @@
                                     </td>
                                     <td><a href="{{route('ads.edit',[$ad->id])}}"><button class="btn btn-outline-warning">Edit</button></a></td>
                                     <td><button class="btn btn-outline-info">View</button></td>
+                                    <td>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$ad->id}}">Delete</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal{{$ad->id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$ad->id}}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <form class="" action="{{route('ads.destroy',[$ad->id])}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel{{$ad->id}}">Delete Confirmation</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure to delete?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-danger">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <td>No Ads Found!</td>
