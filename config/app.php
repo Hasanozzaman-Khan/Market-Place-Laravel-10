@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        // Cohensive\Embed\EmbedServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -184,6 +185,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        // 'Embed' => Cohensive\Embed\Facades\Embed::class,
+        'OEmbed' => Cohensive\OEmbed\Facades\OEmbed::class,
     ])->toArray(),
 
 ];

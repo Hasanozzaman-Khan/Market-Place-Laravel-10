@@ -44,7 +44,7 @@
             <div class="row">
                 @forelse($advertisements as $ad)
                     <div class="col-md-3">
-                        <a class="nav-link" href="{{route('product.show',[$ad->id,$ad->slug])}}">
+                        <a href="{{route('product.show',[$ad->id,$ad->slug])}}">
                             <img src="{{Storage::url($ad->feature_image)}}" class="img-thumbnail" alt="...">
                             <p class="text-center card-footer" style="color:#222;">{{$ad->name}}/${{$ad->price}}</p>
                         </a>

@@ -77,8 +77,8 @@
                             </div>
                             <div class="form-group mt-2">
                                 <label for="description"><b>Description</b></label>
-                                <textarea type="text" name="description" value="" class="form-control" id="description">
-                                </textarea>
+                                <textarea type="text" name="description" value="" class="form-control" id="description"></textarea>
+                                <tinymce-editor height="500"></tinymce-editor>
                             </div>
                             <div class="form-group mt-2">
                                 <label for="price"><b>Price</b></label>
@@ -95,9 +95,9 @@
                                 <label for="product_condition"><b>Product Condition</b></label>
                                 <select class="form-control" name="product_condition" id="product_condition">
                                     <option value="">Select Product Condition</option>
-                                    <option value="likenew">Looks Like New</option>
-                                    <option value="heavilyused">Heavily Used</option>
-                                    <option value="new">New</option>
+                                    <option value="Looks Like New">Looks Like New</option>
+                                    <option value="Heavily Used">Heavily Used</option>
+                                    <option value="New">New</option>
                                 </select>
                             </div>
                             <div class="form-group mt-2">

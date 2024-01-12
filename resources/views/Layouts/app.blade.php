@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="{{asset('css/app.css')}}"> -->
     <!-- Scripts -->
     <!-- <script src="{{asset('js/app.js')}}"></script> -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js" integrity="sha512-6JR4bbn8rCKvrkdoTJd/VFyXAN4CE9XMtgykPWgKiHjou56YDJxWsi90hAeMTYxNwUnKSQu9JPc3SQUg+aGCHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -60,6 +60,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <!-- <li class="nav-item"> -->
+                                    @if (Auth::user() && Auth::user()->isadmin == 1)
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('ads.index') }}">Advertisements</a>
+                                    <!-- </li> -->
                                     <!-- <a href="{{ route('logout') }}" class="dropdown-item">ddd</a> -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -95,7 +101,7 @@
                     <ul class="navbar-nav">
                         @foreach($menus as $menuItem)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="{{route('product.category',[$menuItem->slug])}}" data-bs-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true" aria-expanded="false">
                                 {{$menuItem->name}}
                             </a>
                             <ul class="dropdown-menu">
@@ -105,7 +111,7 @@
                                     <ul class="dropdown-menu">
                                         @foreach($subMenuItem->childcategories as $childMenuItem)
                                         <li>
-                                            <a class="dropdown-item" href="#">{{$childMenuItem->name}}</a>
+                                            <a class="dropdown-item" href="{{route('product.childcategory',[$menuItem->slug, $subMenuItem->slug, $childMenuItem->slug])}}">{{$childMenuItem->name}}</a>
                                         </li>
                                         @endforeach
                                     </ul>

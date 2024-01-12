@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('childcategory_id')->nullable();
             $table->string('name');
             $table->text('description');
-            $table->string('price');
+            $table->double('price');
             $table->string('price_status');
             $table->string('product_condition');
             $table->string('listing_location')->nullable();

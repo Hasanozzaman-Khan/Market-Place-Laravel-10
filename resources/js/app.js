@@ -11,6 +11,9 @@ import SecondImagePreview from './components/imagepreview/SecondImage.vue';
 import Address from './components/address/AddressDropDown.vue';
 // Category DrpoDown
 import Category from './components/category/CategoryDropDown.vue';
+// Message
+import Message from './components/message/Message.vue';
+import Conversation from './components/message/Conversation.vue';
 
 
 const app = createApp();
@@ -42,6 +45,14 @@ const categoryDropDown = createApp();
 categoryDropDown.component('category-dependent-dropdown', Category);
 categoryDropDown.mount("#category_dependent_dropdown");
 
+// Message
+const message = createApp();
+message.component('message', Message);
+message.mount("#message");
+
+const conversation = createApp();
+conversation.component('conversation', Conversation);
+conversation.mount("#conversation");
 
 
 

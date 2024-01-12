@@ -14,6 +14,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SendMessageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,12 +38,26 @@ Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->middlewa
 Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->middleware('auth')->name('ads.update');
 Route::delete('/ads/{id}/delete', [AdvertisementController::class, 'destroy'])->middleware('auth')->name('ads.destroy');
 
+
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
 Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
 
-// Frontend
+// product
+Route::get('/product/{id}/{slug}/show', [FrontendController::class, 'show'])->name('product.show');
+Route::get('/product/{categorySlug}', [FrontendController::class, 'findBasedOnCategory'])->name('product.category');
 Route::get('/product/{categorySlug}/{subcategorySlug}', [FrontendController::class, 'findBasedOnSubcategory'])->name('product.subcategory');
+Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}', [FrontendController::class, 'findBasedOnChildcategory'])->name('product.childcategory');
+
+
+//Message
+Route::get('/messages', [SendMessageController::class, 'index'])->name('messages')->middleware('auth');
+Route::post('/send/message', [SendMessageController::class, 'store'])->name('messages.store')->middleware('auth');
+Route::get('/users', [SendMessageController::class, 'chatWithThisUser'])->name('messages.users')->middleware('auth');
+Route::get('/message/user/{id}', [SendMessageController::class, 'showMessages'])->name('messages.show')->middleware('auth');
+Route::post('/start-conversation', [SendMessageController::class, 'startConversation'])->name('messages.startConversation')->middleware('auth');
+
+
 
 
 
@@ -59,14 +74,15 @@ Route::get('/home', function () {
 
 
 /**************** Backend ************************/
-Route::get('/auth', function () {
-    return view('Backend.Admin.index');
-});
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Admin
-Route::group(['prefix'=>'auth'], function(){
+Route::group(['prefix'=>'auth', 'middleware'=>'admin'], function(){
+    // Route::get('/', function () {
+    //     return view('Backend.Admin.index');
+    // });
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubcategoryController::class);
     Route::resource('childcategory', ChildcategoryController::class);

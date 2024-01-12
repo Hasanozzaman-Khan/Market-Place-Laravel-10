@@ -13,7 +13,30 @@ class Category extends Model
 
     protected $fillable = ['name', 'image', 'slug'];
 
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     public function subcategories(){
         return $this->hasMany(Subcategory::class, 'category_id', 'id');
     }
+
+    public function ads(){
+        return $this->hasMany(Advertisement::class, 'category_id', 'id');
+    }
+
+    // Scope
+    public function scopeCategoryCar($query){
+        return $query->where('name', 'Car')->first();
+    }
+
+    public function scopeCategoryElectronic($query){
+        return $query->where('name', 'Electronic')->first();
+    }
+
+
+
+
+
+
 }

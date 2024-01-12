@@ -25,20 +25,19 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">SL</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Edit</th>
-                                <th scope="col">View</th>
+                                <th scope="col" class="text-center">SL</th>
+                                <th scope="col" class="text-center">Image</th>
+                                <th scope="col" class="text-center">Name</th>
+                                <th scope="col" class="text-center">Price</th>
+                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($ads as $key => $ad)
-                                <tr>
-                                    <th scope="row">{{$key + 1}}</th>
-                                    <td style="width:150px; height:100px;">
+                                <tr class="justify-content-center">
+                                    <th scope="row" class="text-center">{{$key + 1}}</th>
+                                    <td style="width:150px; height:100px;" class="text-center">
                                         <div id="carouselExampleControls{{$ad->id}}" class="carousel slide" data-bs-ride="carousel">
                                             <div class="carousel-inner">
                                                 <div class="carousel-item active">
@@ -65,18 +64,19 @@
 
 
                                     </td>
-                                    <td>{{$ad->name}}</td>
-                                    <td class="text-primary">USD{{$ad->price}}</td>
-                                    <td>
+                                    <td class="text-center">{{$ad->name}}</td>
+                                    <td class="text-primary text-center">USD{{$ad->price}}</td>
+                                    <td class="text-center">
                                         @if($ad->published==1)
                                             <span class="badge bg-primary">Published</span>
                                         @else
                                             <span class="badge bg-danger">Pending</span>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('ads.edit',[$ad->id])}}"><button class="btn btn-outline-warning">Edit</button></a></td>
-                                    <td><button class="btn btn-outline-info">View</button></td>
-                                    <td>
+                                    <td class="text-center">
+                                        <a href="{{route('ads.edit',[$ad->id])}}"><button class="btn btn-outline-warning">Edit</button></a>
+                                        <a target="_blank" href="{{route('product.show',[$ad->id, $ad->slug])}}"><button class="btn btn-outline-info mx-2">View</button></a>
+
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{$ad->id}}">Delete</button>
                                         <!-- Modal -->

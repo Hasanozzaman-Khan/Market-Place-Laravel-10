@@ -66,7 +66,7 @@ class AdvertisementController extends Controller
      */
     public function show(string $id)
     {
-        //
+        dd($id);
     }
 
     /**
