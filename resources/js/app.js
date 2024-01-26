@@ -2,6 +2,10 @@ import './bootstrap';
 
 import {createApp} from 'vue';
 
+// import VueSmoothScroll from 'vue3-smooth-scroll';
+import VueChatScroll from 'vue3-chat-scroll';
+
+
 import Example from './components/ExampleComponent.vue';
 // Images
 import FeatureImagePreview from './components/imagepreview/FeatureImage.vue';
@@ -51,6 +55,8 @@ message.component('message', Message);
 message.mount("#message");
 
 const conversation = createApp();
+// conversation.use(VueSmoothScroll);
+conversation.use(VueChatScroll);
 conversation.component('conversation', Conversation);
 conversation.mount("#conversation");
 

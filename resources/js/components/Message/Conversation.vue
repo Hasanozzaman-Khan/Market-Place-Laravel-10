@@ -21,10 +21,10 @@
                     <span>Chat </span>
                 </div>
 
-                <div class="card-header chat-msg">
+                <div class="card-header chat-msg" v-chat-scroll="{always: false, smooth: true, scrollonremove:true}">
                     <ul class="chat" v-for="(message,index) in messages" :key="index">
 
-                        <li class="sender clearfix">
+                        <li class="sender clearfix" v-if="message.selfOwned">
 
                             <span class="chat-img left clearfix mx-2">
                                 <img width="60" />img
@@ -36,21 +36,23 @@
 
                             <div class="chat-body2 clearfix">
                                 <div class="header clearfix">
-                                    <strong class="primary-font">Name</strong>
+                                    <strong class="primary-font">{{message.user.name}}</strong>
                                     <small class="right text-muted">
                                         <span class="glyphicon glyphicon-time">Date</span>
                                     </small>
                                 </div>
-                                <p class="text-center">
-                                    <a href="" target="_blank">
-                                        <img src="" width="120">
+                                <p class="text-center" v-if="message.ads">
+                                    <a :href=" '/products/'+ message.ads.id+'/'+message.ads.slug " target="_blank">
+                                        {{message.ads.name}}
+                                        <img :src=" '/storage/'+ (message.ads.feature_image.substring(7)) " width="120">
                                     </a>
 
                                 </p>
+                                <p>{{message.body}}</p>
                             </div>
                         </li>
 
-                        <li class="buyer clearfix">
+                        <li class="buyer clearfix" v-else>
 
                             <span class="chat-img right clearfix mx-2">
                                 <img width="60" />img
@@ -62,17 +64,18 @@
 
                             <div class="chat-body clearfix">
                                 <div class="header clearfix">
-                                    <strong class="right primary-font">Name</strong>
+                                    <strong class="right primary-font">{{message.user.name}}</strong>
                                     <small class="right text-muted">
                                         <span class="glyphicon glyphicon-time">Date</span>
                                     </small>
                                 </div>
-                                <p class="text-center">
-                                    <a href="" target="_blank">
-                                        <img src="" width="120">
+                                <p class="text-center" v-if="message.ads">
+                                    <a :href=" '/products/'+ message.ads.id+'/'+message.ads.slug " target="_blank">
+                                        {{message.ads.name}}
+                                        <img :src=" '/storage/'+ (message.ads.feature_image.substring(7)) " width="120">
                                     </a>
-                                    {{message.body}}
                                 </p>
+                                <p>{{message.body}}</p>
                             </div>
                         </li>
 
@@ -81,9 +84,9 @@
 
                 <div class="card-footer">
                     <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <input v-model="body" id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                         <span class="input-group-btn">
-                            <button class="btn btn-primary">Send</button>
+                            <button class="btn btn-primary" @click.prevent="sendMessage()">Send</button>
                         </span>
                     </div>
                 </div>
@@ -108,6 +111,9 @@ export default {
         axios.get('/users').then((response)=>{
             this.users = response.data
         });
+        setInterval(()=>{
+            this.showMessage(this.selectedUserId)
+        },1000);
     },
     methods:{
         showMessage(userId){
@@ -116,6 +122,25 @@ export default {
                 this.selectedUserId = userId
             });
 
+        },
+        sendMessage()
+        {
+            if(this.body==''){
+                alert('Please write your message')
+                return
+            }
+            if(this.selectedUserId==''){
+             alert('Please select the user')
+                return
+            }
+
+            axios.post('/start-conversation',{
+                body:this.body,
+                receiverId: this.selectedUserId
+            }).then((response)=>{
+                this.messages.push(response.data);
+                this.body=''
+            })
         },
     }
 };

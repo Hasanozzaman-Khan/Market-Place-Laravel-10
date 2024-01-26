@@ -186,7 +186,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         // 'Embed' => Cohensive\Embed\Facades\Embed::class,
-        'OEmbed' => Cohensive\OEmbed\Facades\OEmbed::class,
+        // 'OEmbed' => Cohensive\OEmbed\Facades\OEmbed::class,
     ])->toArray(),
 
 ];

@@ -19,6 +19,7 @@
         "jquery": "^3.7.1",
         "popper.js": "^1.16.1",
         "vue": "^3.2.36",
-        "vue-loader": "^17.3.1"
+        "vue-loader": "^17.3.1",
+        "vue3-chat-scroll": "^0.2.0"
     }
 }

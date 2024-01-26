@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Message;
+
 
 class SendMessageController extends Controller
 {
@@ -45,11 +47,12 @@ class SendMessageController extends Controller
     public function showMessages(Request $request, $id)
     {
         // with(['user','ads'])->
-        $messages = Message::latest()->where('receiver_id', auth()->user()->id)
+        $messages = Message::orderBy('id','ASC')->with(['user','ads'])->where('receiver_id', auth()->user()->id)
             ->where('user_id', $id)
             ->orWhere('user_id', auth()->user()->id)
             ->where('receiver_id', $id)
             ->get();
+        // dd($messages);
         return $messages;
     }
 
