@@ -9,15 +9,27 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Childcategory;
 use App\Models\Advertisement;
+
+use App\Models\User;
+
 // use App\Models\City;
 
 class FrontendController extends Controller
 {
+    // Show Indivisual Ads
     public function show($id, $slug)
     {
             $advertisement = Advertisement::where('id', $id)->where('slug', $slug)->first();
             // dd($advertisement->displayVideo());
             return view('Product.show', compact('advertisement'));
+    }
+
+    // Show User Ads
+    public function showUserAds($id)
+    {
+            $advertisements = Advertisement::where('user_id', $id)->paginate(2);
+            $user = User::find($id);
+            return view('Seller.ads', compact('advertisements', 'user'));
     }
 
 

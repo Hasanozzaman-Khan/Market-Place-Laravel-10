@@ -30,6 +30,10 @@ use App\Http\Controllers\SendMessageController;
 /**************** Frontend ************************/
 Route::get('/', [MenuController::class, 'menu']);
 
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
+Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
 // Advertisement
 Route::get('/ads', [AdvertisementController::class, 'index'])->middleware('auth')->name('ads.index');
 Route::get('/ads/create', [AdvertisementController::class, 'create'])->middleware('auth')->name('ads.create');
@@ -38,11 +42,7 @@ Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->middlewa
 Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->middleware('auth')->name('ads.update');
 Route::delete('/ads/{id}/delete', [AdvertisementController::class, 'destroy'])->middleware('auth')->name('ads.destroy');
 
-
-// Profile
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
-Route::post('/profile/update', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
-
+Route::get('/ads/{userId}/show', [FrontendController::class, 'showUserAds'])->middleware('auth')->name('show.user.ads');
 // product
 Route::get('/product/{id}/{slug}/show', [FrontendController::class, 'show'])->name('product.show');
 Route::get('/product/{categorySlug}', [FrontendController::class, 'findBasedOnCategory'])->name('product.category');
