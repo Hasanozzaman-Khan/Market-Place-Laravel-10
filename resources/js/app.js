@@ -19,6 +19,9 @@ import Category from './components/category/CategoryDropDown.vue';
 import Message from './components/message/Message.vue';
 import Conversation from './components/message/Conversation.vue';
 
+// Show Phone Number
+import ShowPhoneNumber from './components/product/ShowPhoneNumber.vue';
+
 
 const app = createApp();
 app.component('example-component', Example);
@@ -65,7 +68,10 @@ conversation.mount("#conversation");
 
 
 
-
+// Message
+const showPhoneNumber = createApp();
+showPhoneNumber.component('show-phone-number', ShowPhoneNumber);
+showPhoneNumber.mount("#show_phone_number");
 
 
 

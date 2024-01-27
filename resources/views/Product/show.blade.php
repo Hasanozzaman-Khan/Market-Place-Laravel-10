@@ -69,12 +69,16 @@
                 <img src="{{Storage::url($advertisement->user->avatar)}}" alt="" width="120">
                 @endif
                 <p>Seller Name : {{$advertisement->user->name??''}}</p>
-                <p>Phone Number : {{$advertisement->phone_number??''}}</p>
+
+                @if($advertisement->phone_number)
+                <p id="show_phone_number"><show-phone-number :phone-number="{{$advertisement->phone_number}}"></show-phone-number></p>
+                @endif
+
                 <p>City : {{$advertisement->cities->name??''}}</p>
                 <p>State : {{$advertisement->states->name??''}}</p>
                 <p>Country : {{$advertisement->countries->name??''}}</p>
                 <p id="message">
-                    @if(Auth()->check())
+                    @if(Auth()->check() && Auth()->user()->id != $advertisement->user_id)
                         <message seller-name="{{$advertisement->user->name}}"
                             :user-id="{{Auth()->user()->id}}"
                             :receiver-id="{{$advertisement->user->id}}"

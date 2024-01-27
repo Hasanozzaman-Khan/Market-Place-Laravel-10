@@ -65,6 +65,7 @@
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('ads.index') }}">Advertisements</a>
+                                    <a class="dropdown-item" href="{{ route('messages') }}">Messages</a>
                                     <!-- </li> -->
                                     <!-- <a href="{{ route('logout') }}" class="dropdown-item">ddd</a> -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"

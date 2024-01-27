@@ -26,11 +26,11 @@
 
                         <li class="sender clearfix" v-if="message.selfOwned">
 
-                            <span class="chat-img left clearfix mx-2">
-                                <img width="60" />img
+                            <span class="chat-img left clearfix mx-2" v-if="message.user.avatar">
+                                <img :src=" '/storage/'+ (message.user.avatar.substring(7)) " width="50" style="border-radius:40%;">
                             </span>
-                            <span class="chat-img left clearfix mx-2">
-                                <img width="60">img
+                            <span class="chat-img left clearfix mx-2" v-else>
+                                <img src="/public/img/pp.jpg" width="50" style="border-radius:40%;">
 
                             </span>
 
@@ -38,7 +38,7 @@
                                 <div class="header clearfix">
                                     <strong class="primary-font">{{message.user.name}}</strong>
                                     <small class="right text-muted">
-                                        <span class="glyphicon glyphicon-time">Date</span>
+                                        <span class="glyphicon glyphicon-time p-2">{{moment(message.created_at).format("DD-MM-YYYY")}}</span>
                                     </small>
                                 </div>
                                 <p class="text-center" v-if="message.ads">
@@ -54,11 +54,11 @@
 
                         <li class="buyer clearfix" v-else>
 
-                            <span class="chat-img right clearfix mx-2">
-                                <img width="60" />img
+                            <span class="chat-img right clearfix mx-2" v-if="message.user.avatar">
+                                <img :src=" '/storage/'+ (message.user.avatar.substring(7))" width="50" style="border-radius:40%;">
                             </span>
-                            <span class="chat-img right clearfix mx-2">
-                                <img width="60">img
+                            <span class="chat-img right clearfix mx-2" v-else>
+                                <img src="/public/img/pp.jpg" width="50" style="border-radius:40%;">
 
                             </span>
 
@@ -66,7 +66,7 @@
                                 <div class="header clearfix">
                                     <strong class="right primary-font">{{message.user.name}}</strong>
                                     <small class="right text-muted">
-                                        <span class="glyphicon glyphicon-time">Date</span>
+                                        <span class="glyphicon glyphicon-time p-2">{{moment(message.created_at).format("DD-MM-YYYY")}}</span>
                                     </small>
                                 </div>
                                 <p class="text-center" v-if="message.ads">
@@ -98,6 +98,7 @@
 
 <script>
 
+import moment from 'moment';
 export default {
     data(){
         return{
@@ -105,6 +106,7 @@ export default {
             messages:[],
             selectedUserId:'',
             body:'',
+            moment:moment,
         }
     },
     mounted(){
@@ -113,7 +115,7 @@ export default {
         });
         setInterval(()=>{
             this.showMessage(this.selectedUserId)
-        },1000);
+        },10000);
     },
     methods:{
         showMessage(userId){
