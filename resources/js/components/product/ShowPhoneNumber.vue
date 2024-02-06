@@ -2,10 +2,10 @@
     <div>
         <p>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success" v-if="showBtn" @click.prevent="showPhoneBtn()">Show phone Number</button>
+            <button type="button" class="btn btn-success" v-if="showBtn" @click.prevent="showPhoneBtn()"><i class="fas fa-phone"></i> Show phone Number</button>
         </p>
         <p v-if="showNumber">
-            <button type="button" class="btn btn-danger"  @click.prevent="hidePhoneBtn()">{{phoneNumber}}</button>
+            <button type="button" class="btn btn-danger"  @click.prevent="hidePhoneBtn()"><i class="fas fa-phone"></i> {{phoneNumber}}</button>
         </p>
 
     </div>

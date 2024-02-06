@@ -2,8 +2,13 @@ import './bootstrap';
 
 import {createApp} from 'vue';
 
-// import VueSmoothScroll from 'vue3-smooth-scroll';
 import VueChatScroll from 'vue3-chat-scroll';
+
+import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+import '@fortawesome/fontawesome-free/scss/brands.scss';
+import '@fortawesome/fontawesome-free/scss/regular.scss';
+import '@fortawesome/fontawesome-free/scss/solid.scss';
+import '@fortawesome/fontawesome-free/scss/v4-shims.scss';
 
 
 import Example from './components/ExampleComponent.vue';
@@ -21,6 +26,7 @@ import Conversation from './components/message/Conversation.vue';
 
 // Show Phone Number
 import ShowPhoneNumber from './components/product/ShowPhoneNumber.vue';
+
 
 
 const app = createApp();
@@ -72,7 +78,6 @@ conversation.mount("#conversation");
 const showPhoneNumber = createApp();
 showPhoneNumber.component('show-phone-number', ShowPhoneNumber);
 showPhoneNumber.mount("#show_phone_number");
-
 
 
 

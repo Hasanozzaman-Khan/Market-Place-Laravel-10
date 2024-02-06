@@ -31,4 +31,22 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'github' => [
+    //     'client_id' => env('GITHUB_CLIENT_ID'),
+    //     'client_secret' => env('GITHUB_CLIENT_SECRET'),
+    //     'redirect' => env('GITHUB_REDIRECT_URL'),
+    // ],
+
+    'github' => [
+        'client_id' => '4875ea44aae2220fde34',
+        'client_secret' => '419beed10d145ad0aa1280c131f975d3a9eff059',
+        'redirect' => 'http://localhost:8000/auth/github/callback',
+    ],
+
+    'facebook' => [
+        'client_id' => '385178337492009',
+        'client_secret' => 'd6b21bda80480d07e18038cd76d988d6',
+        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+    ],
+
 ];

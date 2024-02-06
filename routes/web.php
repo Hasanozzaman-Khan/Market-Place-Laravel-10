@@ -15,6 +15,9 @@ use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SendMessageController;
+
+/**************** facebook Authencation ************************/
+use App\Http\Controllers\SocialLoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,3 +90,13 @@ Route::group(['prefix'=>'auth', 'middleware'=>'admin'], function(){
     Route::resource('subcategory', SubcategoryController::class);
     Route::resource('childcategory', ChildcategoryController::class);
 });
+
+
+
+/************** facebook Authencation ********************/
+Route::get('/auth/facebook', [SocialLoginController::class, 'facebookRedirect'])->name('facebook.redirect');
+Route::get('/auth/facebook/callback', [SocialLoginController::class, 'loginWithFacebook'])->name('login.with.facebook');
+
+/**************** github Authencation ************************/
+Route::get('/auth/github', [SocialLoginController::class, 'githubRedirect'])->name('github.redirect');
+Route::get('/auth/github/callback', [SocialLoginController::class, 'loginWithGithub'])->name('login.with.github');

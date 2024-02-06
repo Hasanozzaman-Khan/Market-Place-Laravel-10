@@ -63,7 +63,14 @@
                             </div>
                         </div>
 
+
                     </form>
+                    <hr>
+                    <div class="form-group row mt-2 mb-0 justify-content-center">
+                        <div class="col-md-7 offset-md-3">
+                            <a href="{{ route('facebook.redirect')}}" class="btn btn-outline-primary"><i class="fa-brands fa-square-facebook"></i> Login with Facebook</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
