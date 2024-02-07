@@ -27,6 +27,8 @@ import Conversation from './components/message/Conversation.vue';
 // Show Phone Number
 import ShowPhoneNumber from './components/product/ShowPhoneNumber.vue';
 
+// Ads
+import SaveAd from './components/ad/SaveAd.vue';
 
 
 const app = createApp();
@@ -81,7 +83,10 @@ showPhoneNumber.mount("#show_phone_number");
 
 
 
-
+// Ads
+const saveAd = createApp();
+saveAd.component('save-ad', SaveAd);
+saveAd.mount("#save_ad");
 
 
 // require('./bootstrap');

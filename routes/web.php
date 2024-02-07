@@ -15,6 +15,7 @@ use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SendMessageController;
+use App\Http\Controllers\SaveAdController;
 
 /**************** facebook Authencation ************************/
 use App\Http\Controllers\SocialLoginController;
@@ -60,8 +61,8 @@ Route::get('/users', [SendMessageController::class, 'chatWithThisUser'])->name('
 Route::get('/message/user/{id}', [SendMessageController::class, 'showMessages'])->name('messages.show')->middleware('auth');
 Route::post('/start-conversation', [SendMessageController::class, 'startConversation'])->name('messages.startConversation')->middleware('auth');
 
-
-
+// SaveAdController
+Route::post('/ad/save', [SaveAdController::class, 'adSave'])->name('ad.save')->middleware('auth');
 
 
 // Route::get('/', function () {

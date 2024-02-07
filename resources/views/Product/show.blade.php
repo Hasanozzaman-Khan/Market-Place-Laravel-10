@@ -46,6 +46,7 @@
                     <iframe  src="{{$advertisement->displayVideo()}}" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
                     <p>Video Link: <a href="{{$advertisement->link}}">{{$advertisement->name}}</a></p>
                     <p>Listing Location : {{$advertisement->listing_location}}</p>
+
                 </div>
             </div>
         </div>
@@ -60,6 +61,9 @@
                 <p>Subcategory : {{$advertisement->subcategories->name??''}}</p>
                 <p>Category : {{$advertisement->categories->name??''}}</p>
                 <p>Posted : {{$advertisement->created_at->diffForHumans()}}</p>
+                <div id="save_ad">
+                    <save-ad :ad-id="{{$advertisement->id}}" :user-id="{{auth()->user()->id}}"></save-ad>
+                </div>
             </div>
             <hr>
             <div class="px-3">

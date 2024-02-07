@@ -65,7 +65,7 @@
                             <a href="{{ route('facebook.redirect')}}" class="btn btn-outline-primary"><i class="fa-brands fa-square-facebook"></i> Login with Facebook</a>
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ route('github.redirect')}}" class="btn btn-outline-primary"><i class="fa-brands fa-square-facebook"></i> Login with Github</a>
+                            <a href="{{ route('github.redirect')}}" class="btn btn-outline-primary"><i class="fa-brands fa-square-github"></i> Login with Github</a>
                         </div>
                     </div>
                 </div>

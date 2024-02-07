@@ -92,7 +92,10 @@ class Advertisement extends Model
     }
 
 
-
+    // Save Ad Relationship
+    public function userads(){
+        return $this->belongsToMany(User::class); //, 'user_id', 'id'
+    }
 
 
 }
