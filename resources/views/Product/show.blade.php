@@ -61,9 +61,13 @@
                 <p>Subcategory : {{$advertisement->subcategories->name??''}}</p>
                 <p>Category : {{$advertisement->categories->name??''}}</p>
                 <p>Posted : {{$advertisement->created_at->diffForHumans()}}</p>
+                @if(Auth::check())
+                @if(!$advertisement->didUserSavedAd() && Auth()->user()->id != $advertisement->user_id)
                 <div id="save_ad">
                     <save-ad :ad-id="{{$advertisement->id}}" :user-id="{{auth()->user()->id}}"></save-ad>
                 </div>
+                @endif
+                @endif
             </div>
             <hr>
             <div class="px-3">

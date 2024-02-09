@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="{{asset('admin/template/css/style.css')}}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('admin/template/images/favicon.png')}}" />
+  @vite(['resources/scss/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
   <div class="container-scroller">

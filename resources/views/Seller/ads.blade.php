@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="">
                     {!! $advertisements->links() !!}
                 </div>
 

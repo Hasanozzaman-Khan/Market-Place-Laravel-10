@@ -4,7 +4,7 @@
 <div class="main-panel">
     <div class="content-wrapper">
         @include('Backend.Inc.message')
-        <h3>Manage Category</h3>
+        <h3>Manage Advertisement</h3>
         <div class="row justify-content-center">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
@@ -14,29 +14,42 @@
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th>Seller</th>
                                         <th>Image</th>
                                         <th>Name</th>
-                                        <th>Edit</th>
+                                        <th>Published Date</th>
+                                        <th>View</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($categories as $category)
+                                    @forelse($ads as $ad)
                                         <tr>
-                                            <td><img src="{{Storage::url($category->image)}}"></td>
-                                            <td>{{$category->name}}</td>
-                                            
-                                            <td><a href="{{route('category.edit',[$category->id])}}"><button class="btn btn-info"><i class="mdi mdi-table-edit"></i></button></a></td>
+                                            <td>
+                                                @if($ad->user->avatar)
+                                                    <img src="{{Storage::url($ad->user->avatar)}}">
+                                                @else
+                                                    <img src="{{asset('img/pp.jpg')}}">
+                                                @endif
+                                                <a href="{{route('show.user.ads',[$ad->user_id])}}">{{$ad->user->name}}</a>
+                                            </td>
+                                            <td><img src="{{Storage::url($ad->feature_image)}}"></td>
+                                            <td>{{$ad->name}}</td>
+                                            <td>{{$ad->created_at->format('Y-m-d')}}</td>
+                                            <td>
+                                                <a target="_blank" href="{{route('product.show',[$ad->id, $ad->slug])}}"><button class="btn btn-primary"><i class="mdi mdi-table-edit"></i></button></a>
+                                            </td>
+
                                             <td>
                                                 <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$category->id}}">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$ad->id}}">
                                                     <i class="mdi mdi-delete"></i>
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="exampleModal{{$ad->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                   <div class="modal-dialog">
-                                                      <form class="" action="{{route('category.destroy',[$category->id])}}" method="post">@csrf
+                                                      <form class="" action="{{route('ads.destroy',[$ad->id])}}" method="post">@csrf
                                                           @method('DELETE')
                                                           <div class="modal-content">
                                                               <div class="modal-header">
@@ -46,7 +59,7 @@
                                                                   </button>
                                                               </div>
                                                               <div class="modal-body">
-                                                                  Are you Sure to delete {{$category->name}} ?
+                                                                  Are you Sure to delete {{$ad->name}}?
                                                               </div>
                                                               <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -60,7 +73,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <td>No Category</td>
+                                        <td>No Ads to display</td>
                                     @endforelse
                                 </tbody>
                             </table>
@@ -69,6 +82,8 @@
                 </div>
             </div>
         </div>
+
+        {!! $ads->links() !!}
     </div>
 </div>
 

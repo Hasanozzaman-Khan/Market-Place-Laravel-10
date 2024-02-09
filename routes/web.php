@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\ChildcategoryController;
+use App\Http\Controllers\AdminListingController;
 
 /**************** Frontend ************************/
 use App\Http\Controllers\MenuController;
@@ -45,6 +46,7 @@ Route::post('/ads/store', [AdvertisementController::class, 'store'])->middleware
 Route::get('/ads/{id}/edit', [AdvertisementController::class, 'edit'])->middleware('auth')->name('ads.edit');
 Route::put('/ads/{id}/update', [AdvertisementController::class, 'update'])->middleware('auth')->name('ads.update');
 Route::delete('/ads/{id}/delete', [AdvertisementController::class, 'destroy'])->middleware('auth')->name('ads.destroy');
+Route::get('/ads/pending', [AdvertisementController::class, 'pending'])->middleware('auth')->name('ads.pending');
 
 Route::get('/ads/{userId}/show', [FrontendController::class, 'showUserAds'])->middleware('auth')->name('show.user.ads');
 // product
@@ -63,6 +65,8 @@ Route::post('/start-conversation', [SendMessageController::class, 'startConversa
 
 // SaveAdController
 Route::post('/ad/save', [SaveAdController::class, 'adSave'])->name('ad.save')->middleware('auth');
+Route::get('/my-saved-ad', [SaveAdController::class, 'getSavedAd'])->name('my.saved.ad')->middleware('auth');
+Route::post('/my-saved-ad/delete', [SaveAdController::class, 'destroy'])->name('my.saved.ad.destroy')->middleware('auth');
 
 
 // Route::get('/', function () {
@@ -90,6 +94,9 @@ Route::group(['prefix'=>'auth', 'middleware'=>'admin'], function(){
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubcategoryController::class);
     Route::resource('childcategory', ChildcategoryController::class);
+
+    // Admin Listing
+    Route::get('/all-ads', [AdminListingController::class, 'index'])->name('all-ads.index');
 });
 
 

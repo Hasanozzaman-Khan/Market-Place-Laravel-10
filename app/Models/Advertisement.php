@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\facades\DB;
+
 use App\Models\Childcategory;
 use App\Models\Subcategory;
 use App\Models\Category;
@@ -95,6 +97,14 @@ class Advertisement extends Model
     // Save Ad Relationship
     public function userads(){
         return $this->belongsToMany(User::class); //, 'user_id', 'id'
+    }
+
+    // Check if user already saved the Ad
+    public function didUserSavedAd(){
+        return DB::table('advertisement_user')
+                    ->where('user_id', auth()->user()->id)
+                    ->where('advertisement_id', $this->id)
+                    ->first();
     }
 
 
