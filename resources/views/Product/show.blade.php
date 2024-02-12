@@ -94,6 +94,83 @@
                         </message>
                     @endif
                 </p>
+                <span>
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{Session::get('message')}}
+                        </div>
+                    @endif
+                    <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{$advertisement->id}}">Report This Ad</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{$advertisement->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="{{route('report.this.ad')}}" method="post">
+                                @csrf
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Report, What's wrong with this ad</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="reason">Select Reason</label>
+                                            <select class="form-control" name="reason" required>
+                                                <option value="">Select</option>
+                                                <option value="Fraud">Fraud</option>
+                                                <option value="Duplicate">Duplicate</option>
+                                                <option value="Spam">Spam</option>
+                                                <option value="Wrong Category">Wrong Category</option>
+                                                <option value="Offensive">Offensive</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Your Email</label>
+                                            @if(Auth()->check())
+                                                <input type="email" name="email" class="form-control" value="{{auth()->user()->email}}" readonly required>
+                                            @else
+                                                <input type="email" name="email" class="form-control" value="" required>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Your Message</label>
+                                            <textarea name="message" class="form-control" rows="4" cols="80" required></textarea>
+                                        </div>
+                                        <input type="hidden" name="ad_id" value="{{$advertisement->id}}">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-outline-danger">Report this ad</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </span>
+            </div>
+            <div class="px-3">
+                <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://markerplacelaravel10.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </div>
         </div>
     </div>

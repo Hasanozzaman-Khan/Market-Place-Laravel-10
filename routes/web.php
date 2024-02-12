@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SendMessageController;
 use App\Http\Controllers\SaveAdController;
+use App\Http\Controllers\FraudController;
 
 /**************** facebook Authencation ************************/
 use App\Http\Controllers\SocialLoginController;
@@ -68,6 +69,8 @@ Route::post('/ad/save', [SaveAdController::class, 'adSave'])->name('ad.save')->m
 Route::get('/my-saved-ad', [SaveAdController::class, 'getSavedAd'])->name('my.saved.ad')->middleware('auth');
 Route::post('/my-saved-ad/delete', [SaveAdController::class, 'destroy'])->name('my.saved.ad.destroy')->middleware('auth');
 
+// Report this Ad
+Route::post('/report-this-ad', [FraudController::class, 'store'])->name('report.this.ad');
 
 // Route::get('/', function () {
 //     return view('index');
@@ -97,6 +100,9 @@ Route::group(['prefix'=>'auth', 'middleware'=>'admin'], function(){
 
     // Admin Listing
     Route::get('/all-ads', [AdminListingController::class, 'index'])->name('all-ads.index');
+
+    // Reported Ad listing
+    Route::get('/all-reported-ads', [FraudController::class, 'index'])->name('all-reported-ads.index');
 });
 
 

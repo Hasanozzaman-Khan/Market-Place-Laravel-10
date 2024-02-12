@@ -3,12 +3,14 @@
   <!-- partial:partials/_sidebar.html -->
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+        
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="mdi mdi-home menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic-category" aria-expanded="false" aria-controls="ui-basic-category">
           <i class="mdi mdi-circle-outline menu-icon"></i>
@@ -23,7 +25,6 @@
         </div>
       </li>
 
-
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic-subcategory" aria-expanded="false" aria-controls="ui-basic-subcategory">
           <i class="mdi mdi-circle-outline menu-icon"></i>
@@ -37,7 +38,6 @@
           </ul>
         </div>
       </li>
-
 
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic-childcategory" aria-expanded="false" aria-controls="ui-basic-childcategory">
@@ -54,7 +54,7 @@
       </li>
 
 
-      <li class="nav-item2">
+      <!-- <li class="nav-item2">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
           <i class="mdi mdi-circle-outline menu-icon"></i>
           <span class="menu-title">UI Elements 2</span>
@@ -66,7 +66,7 @@
             <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography1</a></li>
           </ul>
         </div>
-      </li>
+      </li> -->
 
 
       <li class="nav-item">
@@ -75,25 +75,29 @@
           <span class="menu-title"> All Advertisement</span>
         </a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="{{route('all-reported-ads.index')}}">
           <i class="mdi mdi-chart-pie menu-icon"></i>
-          <span class="menu-title">Charts</span>
+          <span class="menu-title">All Reported Ads</span>
         </a>
       </li>
-      <li class="nav-item">
+
+      <!-- <li class="nav-item">
         <a class="nav-link" href="pages/tables/basic-table.html">
           <i class="mdi mdi-grid-large menu-icon"></i>
           <span class="menu-title">Tables</span>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+
+      <!-- <li class="nav-item">
         <a class="nav-link" href="pages/icons/mdi.html">
           <i class="mdi mdi-emoticon menu-icon"></i>
           <span class="menu-title">Icons</span>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+
+      <!-- <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
           <i class="mdi mdi-account menu-icon"></i>
           <span class="menu-title">User Pages</span>
@@ -108,12 +112,14 @@
             <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
           </ul>
         </div>
-      </li>
-      <li class="nav-item">
+      </li> -->
+
+      <!-- <li class="nav-item">
         <a class="nav-link" href="documentation/documentation.html">
           <i class="mdi mdi-file-document-box-outline menu-icon"></i>
           <span class="menu-title">Documentation</span>
         </a>
-      </li>
+      </li> -->
+
     </ul>
   </nav>
