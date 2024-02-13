@@ -19,6 +19,9 @@ class MenuController extends Controller
         // $firstAds = Advertisement::where('category_id', $category->id)
         //                     ->orderByDesc('id')->take(1)->get();
 
+        // Get all the categories
+        $categories = Category::all();
+
         $secondAds = Advertisement::SecondFourAdsInCaurosel($category->id);
         // $secondAds = Advertisement::where('category_id', $category->id)
         //                     ->whereNotIn('id', $firstAds->pluck('id')->toArray())
@@ -30,6 +33,6 @@ class MenuController extends Controller
         $secondAdsElectronic = Advertisement::SecondFourAdsInCaurosel($categoryElectronic->id);
         // return $menus;
         // dd($firstAdsElectronic);
-        return view('index', compact(['firstAds', 'secondAds', 'category', 'categoryElectronic', 'firstAdsElectronic', 'secondAdsElectronic']));
+        return view('index', compact(['firstAds', 'secondAds', 'category', 'categoryElectronic', 'firstAdsElectronic', 'secondAdsElectronic', 'categories']));
     }
 }

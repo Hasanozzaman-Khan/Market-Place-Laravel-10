@@ -91,9 +91,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Admin
 Route::group(['prefix'=>'auth', 'middleware'=>'admin'], function(){
-    // Route::get('/', function () {
-    //     return view('Backend.Admin.index');
-    // });
+    Route::get('/', function () {
+        return view('Backend.Admin.index');
+    });
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubcategoryController::class);
     Route::resource('childcategory', ChildcategoryController::class);
